@@ -12,14 +12,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh './mvnw clean compile'
-                // bat '.\\mvnw clean compile'
+                sh './gradlew assemble'
             }
         }
         stage('Test') {
             steps {
-                sh './mvnw test'
-                // bat '.\\mvnw test'
+                sh './gradlew test'
             }
 
             post {
