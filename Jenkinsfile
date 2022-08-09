@@ -12,18 +12,26 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'java -version'
+                sh "chmod +x gradlew"
                 sh './gradlew assemble'
             }
         }
         stage('Test') {
             steps {
+                sh 'java -version'
+                sh "chmod +x gradlew"
                 sh './gradlew test'
             }
-
-            post {
-                always {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
+        }
+       stage('Publish Test Coverage Report') {
+         steps {
+           step([$class: 'JacocoPublisher',
+                execPattern: '**/build/jacoco/*.exec',
+                classPattern: '**/build/classes',
+                sourcePattern: 'src/main/java',
+                exclusionPattern: 'src/test*'
+                ])
             }
         }
         
