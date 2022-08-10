@@ -12,8 +12,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'maven -version'
-                sh 'maven test'
+                sh 'mvn --version'
+                sh 'mvn test'
             }
         }
        
