@@ -41,11 +41,14 @@ pipeline {
             }
         }
         stage('SonarCloud analysis') {
+            agent {
+                docker { image 'sonarsource/sonar-scanner-cli' } 
+            }
             steps{
                 script{
                     def scannerHome = tool 'scanner';
                       withSonarQubeEnv('SonarCloud') {
-                           sh "${scannerHome}/bin/sonar-scanner"
+                           sh './gradlew sonarqube' 
                       }
                 }
             }
