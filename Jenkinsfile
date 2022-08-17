@@ -44,7 +44,7 @@ pipeline {
                 script{
                     def scannerHome = tool 'scanner';
                       withSonarQubeEnv('SonarCloud') {
-                          sh "${scannerHome}/bin/sonar-scanner"
+                          sh "gradle sonarqube"
                       }
                 }
             }
