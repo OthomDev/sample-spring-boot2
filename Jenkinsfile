@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+        registry = "othom/springboot-app"
+        registrycredential = 'dockerhub'
+        dockerimage = ''
+    }
     tools {
         maven 'Maven'
     }
