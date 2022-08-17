@@ -10,13 +10,13 @@ pipeline {
                 git url: 'https://github.com/OthomDev/sample-spring-boot.git'
             }
         }
-        /*stage('Build') {
+        stage('Build') {
             steps {
                 sh 'java -version'
                 sh "chmod +x gradlew"
                 sh './gradlew assemble'
             }
-          }*/
+          }
        
         
     }
