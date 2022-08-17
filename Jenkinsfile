@@ -7,6 +7,7 @@ pipeline {
     }
     tools {
         maven 'Maven'
+         gradle "Gradle"
     }
     stages {
         stage('Git') {
