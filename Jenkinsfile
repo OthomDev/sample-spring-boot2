@@ -17,6 +17,13 @@ pipeline {
                 sh './gradlew assemble'
             }
           }
+        stage('Test') {
+            steps {
+                sh 'java -version'
+                sh "chmod +x gradlew"
+                sh './gradlew test'
+            }
+        }
        
         
     }
