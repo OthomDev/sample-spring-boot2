@@ -4,6 +4,7 @@ pipeline {
         registry = "othom/springboot-app"
         registrycredential = 'dockerhub'
         dockerimage = ''
+        SONAR_TOKEN = credentials('jenkins')
     }
     tools {
         maven 'Maven'
@@ -45,7 +46,7 @@ pipeline {
                 script{
                     def scannerHome = tool 'scanner';
                       withSonarQubeEnv('SonarCloud') {
-                           sh './gradlew sonarqube'
+                           sh './gradlew sonarqube '
                       }
                 }
             }
