@@ -29,8 +29,8 @@ pipeline {
            step([$class: 'JacocoPublisher',
                 execPattern: '**/build/jacoco/*.exec',
                 classPattern: '**/build/classes',
-              //  sourcePattern: 'src/main/java',
-             //   exclusionPattern: 'src/test*'
+                sourcePattern: 'src/main/java',
+                exclusionPattern: 'src/test*'
                 ])
             }
         }*/
