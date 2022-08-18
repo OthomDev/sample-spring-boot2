@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        registry = "othom/springboot-app"
+        registry = "othom/springboot-app-gradle"
         registrycredential = 'dockerhub'
         dockerimage = ''
     }
@@ -59,6 +59,26 @@ pipeline {
                  }
            }
          }
+        stage('Build Image') {
+            steps {
+                script {
+                    // reference: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
+                    img = registry + ":${env.BUILD_ID}"
+                    // reference: https://docs.cloudbees.com/docs/admin-resources/latest/plugins/docker-workflow
+                    dockerImage = docker.build("${img}")
+                }
+            }
+        }
+        stage('Push To DockerHub') {
+            steps {
+                script {
+                    docker.withRegistry( 'https://registry.hub.docker.com ', registryCredential ) {
+                        // push image to registry
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
        
         
     }
