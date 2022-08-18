@@ -5,10 +5,6 @@ pipeline {
         registrycredential = 'dockerhub'
         dockerimage = ''
     }
-    tools {
-        maven 'Maven'
-         gradle "Gradle"
-    }
     stages {
         stage('Git') {
             steps {
@@ -40,15 +36,19 @@ pipeline {
                 ])
             }
         }
-        stage('SonarCloud analysis') {
-            steps{
-                script{
-                    def scannerHome = tool 'scanner';
-                      withSonarQubeEnv('SonarCloud') {
-                           sh './gradlew sonarqube' 
-                      }
-                }
+        stage('sonarqube') {
+            agent {
+                docker { image 'sonarsource/sonar-scanner-cli' } 
             }
+            steps {
+                sh 'echo scanning!'
+                
+                withSonarQubeEnv('SonarCloud') {
+                    sh './gradlew sonarqube'  
+                }
+                
+            }
+        }
         
         }
         stage('Quality gate') {
