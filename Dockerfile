@@ -1,4 +1,4 @@
-FROM openjdk:8u212-alpine
+FROM openjdk:8-jdk-alpine
 
 LABEL name "Springboot base image" 
 LABEL maintainer "Cognizant"
@@ -6,6 +6,9 @@ LABEL version=1.0
 
 USER root
 
-COPY build/libs/spring-boot.jar $APP_LOC/app.jar
+ARG JAR_FILE=target/*.jar
 
-ENTRYPOINT ["java","-jar","app.jar"]
+COPY ${JAR_FILE} app.jar
+
+
+ENTRYPOINT ["java","-jar","/app.jar"]
