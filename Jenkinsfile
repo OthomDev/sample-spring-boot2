@@ -4,7 +4,6 @@ pipeline {
         registry = "othom/springboot-app"
         registrycredential = 'dockerhub'
         dockerimage = ''
-        SONAR_TOKEN = credentials('SONAR_TOKEN')
     }
     tools {
         maven 'Maven'
