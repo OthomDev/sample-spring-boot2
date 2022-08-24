@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sample-spring-boot
+  name: othom/springboot-app-gradle
 spec:
   replicas: 1 # 1 PODs at any given point of time
   selector:
     matchLabels:
-      app: sample-spring-boot
+      app: othom/springboot-app-gradle
   template:
     metadata:
       labels:
-        app: sample-spring-boot
+        app: springboot-app-gradle
     spec:
       containers:
-        - name: springboot-sample
-          image: <Your Docker Image>:<Your Image Tag>
+        - name: springboot-app-gradle
+          image: othom/springboot-app-gradle:44
           ports:
             - containerPort: 8080
 ---
