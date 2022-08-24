@@ -36,7 +36,7 @@ pipeline {
                 ])
             }
         }
-        stage('sonarqube') {
+        /*stage('sonarqube') {
             agent {
                 docker { image 'sonarsource/sonar-scanner-cli' } 
             }
@@ -58,7 +58,7 @@ pipeline {
                        }
                  }
            }
-         }
+         }*/
         stage('Build Image') {
             steps {
                 script {
