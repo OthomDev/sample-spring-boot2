@@ -16,7 +16,7 @@ pipeline {
         steps{   
             script {
                 withKubeConfig([credentialsId: 'K8S', serverUrl: '']) {
-                    sh ('sudo kubectl apply -f  eks-deploy-k8s.yaml')
+                    sh 'kubectl apply -f  eks-deploy-k8s.yaml'
                     }
                 }
             }
