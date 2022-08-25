@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy App') {
             steps {
                 sh """
-                    aws eks update-kubeconfig --region ${EKS_CLUSTER_REGION} --name ${EKS_CLUSTER_NAME} --role-arn arn:aws:sts::648503940051:assumed-role/cluster-admin-role/i-0053790c7ec38be4a
+                    aws eks update-kubeconfig --region ${EKS_CLUSTER_REGION} --name ${EKS_CLUSTER_NAME}
                     kubectl cluster-info dump
                 """            
             }
