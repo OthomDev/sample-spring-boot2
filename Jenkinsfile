@@ -17,7 +17,7 @@ pipeline {
         steps{   
             script {
                 withKubeConfig([credentialsId: 'EKS', serverUrl: '']) {
-                    sh 'kubectl get pods'
+                    sh 'kubectl get node'
                     }
                 }
             }
