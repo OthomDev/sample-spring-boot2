@@ -20,7 +20,7 @@ pipeline {
             steps {
                 sh """
                     aws eks update-kubeconfig --region ${EKS_CLUSTER_REGION} --name ${EKS_CLUSTER_NAME}
-                    kubectl cluster-info
+                    kubectl cluster-info dump
                 """            
             }
    }
